@@ -12,13 +12,13 @@ def main():
     port = args.port
     model_name = args.model
 
-    # On utilise une variable d'environnement pour passer le nom du modèle au serveur
     os.environ["LLM_MODEL_NAME"] = str(model_name)
+    os.environ["LOG_DIR"] = os.path.join("LOGS", "SERVER_OLLAMA")
+
 
     print(f"🚀 [SERVER] START {host}:{port}")
     print(f"[SERVER] Modèle Ollama utilisé : {model_name}")
     
-    # Lance l'application définie dans server.py
     uvicorn.run("serveur:app", host=host, port=port, reload=False)
 
 if __name__ == "__main__":
